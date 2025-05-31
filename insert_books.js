@@ -1,198 +1,211 @@
-// insert_books.js - Script to populate MongoDB with sample book data
+use plp_bookstore;
+db.books.insertMany(
+[
+  {
+  title: "The Lord of the Rings",
+  author: "J.R.R. Tolkien",
+  genre: "Fantasy",
+  published_year: 1954,
+  price: 19.99,
+  in_stock: true,
+  pages: 1176,
+  publisher: "Allen & Unwin"
+},
 
-// Import MongoDB client
-const { MongoClient } = require('mongodb');
-
-// Connection URI (replace with your MongoDB connection string if using Atlas)
-const uri = 'mongodb://localhost:27017';
-
-// Database and collection names
-const dbName = 'plp_bookstore';
-const collectionName = 'books';
-
-// Sample book data
-const books = [
+    {
+      title: "The Hobbit",
+      author: "J.R.R. Tolkien",
+      genre: "Fantasy",
+      published_year: 1937,
+      price: 16.99,
+      in_stock: true,
+      pages: 310,
+      publisher: "Allen & Unwin"
+    },
+{
+  title: "The Two Towers",
+  author: "J.R.R. Tolkien",
+  genre: "Fantasy",
+  published_year: 1954,
+  price: 19.99,
+  in_stock: true,
+  pages: 1176,
+  publisher: "Allen & Unwin"
+},
+{
+  title: "The Fellowship of the Ring",
+  author: "J.R.R. Tolkien",
+  genre: "Fantasy",
+  published_year: 1954,
+  price: 19.99,
+  in_stock: true,
+  pages: 1176,
+  publisher: "Allen & Unwin"
+},
+{
+  title: "The Silmarillion",
+  author: "J.R.R. Tolkien",
+  genre: "Fantasy",
+  published_year: 1954,
+  price: 19.99,
+  in_stock: true,
+  pages: 1176,
+  publisher: "Allen & Unwin"
+},
+{
+  title: "The Return of the King",
+  author: "J.R.R. Tolkien",
+  genre: "Fantasy",
+  published_year: 1954,
+  price: 19.99,
+  in_stock: true,
+  pages: 1176,
+  publisher: "Allen & Unwin"
+},
+{
+  title: "The Children of Hurin",
+  author: "J.R.R. Tolkien",
+  genre: "Fantasy",
+  published_year: 1954,
+  price: 19.99,
+  in_stock: true,
+  pages: 1176,
+  publisher: "Allen & Unwin"},
   {
-    title: 'To Kill a Mockingbird',
-    author: 'Harper Lee',
-    genre: 'Fiction',
-    published_year: 1960,
-    price: 12.99,
-    in_stock: true,
-    pages: 336,
-    publisher: 'J. B. Lippincott & Co.'
-  },
-  {
-    title: '1984',
-    author: 'George Orwell',
-    genre: 'Dystopian',
-    published_year: 1949,
-    price: 10.99,
-    in_stock: true,
-    pages: 328,
-    publisher: 'Secker & Warburg'
-  },
-  {
-    title: 'The Great Gatsby',
-    author: 'F. Scott Fitzgerald',
-    genre: 'Fiction',
-    published_year: 1925,
-    price: 9.99,
-    in_stock: true,
-    pages: 180,
-    publisher: 'Charles Scribner\'s Sons'
-  },
-  {
-    title: 'Brave New World',
-    author: 'Aldous Huxley',
-    genre: 'Dystopian',
-    published_year: 1932,
-    price: 11.50,
-    in_stock: false,
-    pages: 311,
-    publisher: 'Chatto & Windus'
-  },
-  {
-    title: 'The Hobbit',
-    author: 'J.R.R. Tolkien',
-    genre: 'Fantasy',
-    published_year: 1937,
-    price: 14.99,
-    in_stock: true,
-    pages: 310,
-    publisher: 'George Allen & Unwin'
-  },
-  {
-    title: 'The Catcher in the Rye',
-    author: 'J.D. Salinger',
-    genre: 'Fiction',
-    published_year: 1951,
-    price: 8.99,
-    in_stock: true,
-    pages: 224,
-    publisher: 'Little, Brown and Company'
-  },
-  {
-    title: 'Pride and Prejudice',
-    author: 'Jane Austen',
-    genre: 'Romance',
-    published_year: 1813,
-    price: 7.99,
-    in_stock: true,
-    pages: 432,
-    publisher: 'T. Egerton, Whitehall'
-  },
-  {
-    title: 'The Lord of the Rings',
-    author: 'J.R.R. Tolkien',
-    genre: 'Fantasy',
+    title: "The Silmarillion",
+    author: "J.R.R. Tolkien",
+    genre: "Fantasy",
     published_year: 1954,
     price: 19.99,
     in_stock: true,
-    pages: 1178,
-    publisher: 'Allen & Unwin'
+    pages: 1176,
+    publisher: "Allen & Unwin"
   },
   {
-    title: 'Animal Farm',
-    author: 'George Orwell',
-    genre: 'Political Satire',
-    published_year: 1945,
-    price: 8.50,
-    in_stock: false,
-    pages: 112,
-    publisher: 'Secker & Warburg'
-  },
-  {
-    title: 'The Alchemist',
-    author: 'Paulo Coelho',
-    genre: 'Fiction',
-    published_year: 1988,
-    price: 10.99,
+    title: "The Hobbit",
+    author: "J.R.R. Tolkien",
+    genre: "Fantasy",
+    published_year: 1937,
+    price: 16.99,
     in_stock: true,
-    pages: 197,
-    publisher: 'HarperOne'
+    pages: 310,
+    publisher: "Allen & Unwin"
   },
   {
-    title: 'Moby Dick',
-    author: 'Herman Melville',
-    genre: 'Adventure',
-    published_year: 1851,
-    price: 12.50,
-    in_stock: false,
-    pages: 635,
-    publisher: 'Harper & Brothers'
-  },
-  {
-    title: 'Wuthering Heights',
-    author: 'Emily Brontë',
-    genre: 'Gothic Fiction',
-    published_year: 1847,
-    price: 9.99,
+    title: "The Lord of the Rings",
+    author: "J.R.R. Tolkien",
+    genre: "Fantasy",
+    published_year: 1954,
+    price: 19.99,
     in_stock: true,
-    pages: 342,
-    publisher: 'Thomas Cautley Newby'
+    pages: 1176,
+    publisher: "Allen & Unwin"
   }
-];
 
-// Function to insert books into MongoDB
-async function insertBooks() {
-  const client = new MongoClient(uri);
 
-  try {
-    // Connect to the MongoDB server
-    await client.connect();
-    console.log('Connected to MongoDB server');
 
-    // Get database and collection
-    const db = client.db(dbName);
-    const collection = db.collection(collectionName);
 
-    // Check if collection already has documents
-    const count = await collection.countDocuments();
-    if (count > 0) {
-      console.log(`Collection already contains ${count} documents. Dropping collection...`);
-      await collection.drop();
-      console.log('Collection dropped successfully');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]
+
+
+
+
+
+
+
+
+
+
+
+)
+//2.b
+db.books.find({genre:"J.R.R. Tolkien"}).pretty()
+//2.c
+db.books.find({ published_year: 1937 }).pretty()
+//2.d
+db.books.find({author: "J.R.R. Tolkien"}).pretty()
+//2.e
+
+db.books.updateMany({title: "The Hobbit"}, {$set: {price: 20.99}})
+db.books.find({title: "The Hobbit"}).pretty()
+//2.f
+db.books.deleteOne({title: "The Hobbit"})
+db.books.find({title: "The Hobbit"}).pretty()
+//task3
+//3.a
+db.books.find({} ,{published_year:{$gt:2010},in_stock:{$eq:true}}).pretty()
+//3.b
+db.books.find({},{title:1,author:1})
+//3.c1
+db.books.find({},{title:1,author:1,price:1}).sort({price:1})
+//3.c2
+db.books.find({},{price:1,author:1,title:1}).sort({price:-1})
+//3.d
+db.books.find({},{title:1,author:1,price:1}).sort({price:-1}).skip(5).limit(5)
+db.books.find({},{title:1,author:1,price:1}).sort({author:-1}).skip(5).limit(5)
+//4.a
+db.books.aggregate([{$group:{_id:"$genre",average_price:{$avg:"$price"}}}])
+//4.b
+db.books.aggregate([
+  {
+    $group: {
+      _id: "$author",         // Group by author
+      totalBooks: { $sum: 1 } // Count each book as 1
     }
-
-    // Insert the books
-    const result = await collection.insertMany(books);
-    console.log(`${result.insertedCount} books were successfully inserted into the database`);
-
-    // Display the inserted books
-    console.log('\nInserted books:');
-    const insertedBooks = await collection.find({}).toArray();
-    insertedBooks.forEach((book, index) => {
-      console.log(`${index + 1}. "${book.title}" by ${book.author} (${book.published_year})`);
-    });
-
-  } catch (err) {
-    console.error('Error occurred:', err);
-  } finally {
-    // Close the connection
-    await client.close();
-    console.log('Connection closed');
+  },
+  {
+    $sort: { totalBooks: -1 } // Sort authors by book count (descending)
+  },
+  {
+    $limit: 1                 // Show only the top author
   }
-}
-
-// Run the function
-insertBooks().catch(console.error);
-
-/*
- * Example MongoDB queries you can try after running this script:
- *
- * 1. Find all books:
- *    db.books.find()
- *
- * 2. Find books by a specific author:
- *    db.books.find({ author: "George Orwell" })
- *
- * 3. Find books published after 1950:
- *    db.books.find({ published_year: { $gt: 1950 } })
- *
- * 4. Find books in a specific genre:
- *    db.books.find({ genre: "Fiction" })
- *
- * 5. Find in-stock books:
- *    db.books.find({ in_stock: true })
- */ 
+])
+//4.c
+db.books.aggregate([
+  {
+    $project: {
+      decade: { $subtract: [ "$publishedYear", { $mod: [ "$publishedYear", 10 ] } ] }
+    }
+  },
+  {
+    $group: {
+      _id: "$decade",
+      totalBooks: { $sum: 1 }
+    }
+  },
+  {
+    $sort: { _id: 1 } // Sort decades from oldest to newest
+  }
+])
+//question 5
+db.books.createIndex({ title: 1 })
+//5.b
+db.books.createIndex({ author: 1, published_year: 1 })
+//5.c
+db.books.find({ author: "Chinua Achebe", published_year: 1958 }).explain("executionStats")
